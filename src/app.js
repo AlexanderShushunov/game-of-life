@@ -2,26 +2,34 @@
 const _ = require("lodash");
 const {step} = require("./game");
 const {c} = require("./helpers");
+const animate = require("./console-animation");
 
-let population = [
+let startPopulation = [
             c(1, 0),
     c(0, 1),
     c(0, 2), c(1, 2), c(2, 2)];
 
+let fieldDimension = {
+    top: -1,
+    left: -18,
+    width: 24,
+    height: 20
+};
 
-_.times(5, () => {
-    printGame(population);
-    population = step(population);
-});
+animate(generateFrames(startPopulation, fieldDimension), 300);
 
-function printGame(population) {
+function* generateFrames(population, fieldDimension) {
+    while (true) {
+        yield printGame(population, fieldDimension);
+        population = step(population);
+    }
+}
+
+
+
+function printGame(population, fieldDimension) {
     let result = "";
-    let fieldDimension = {
-        top: -1,
-        left: -2,
-        width: 6,
-        height: 6
-    };
+
 
     _.times(fieldDimension.height, printRow);
 
@@ -37,8 +45,10 @@ function printGame(population) {
         };
         result += cellSign(cell);
     }
+
     function cellSign(cell) {
         return population.some(_.partial(_.isEqual, cell)) ? "*" : ".";
     }
-    console.log(result);
+
+    return result;
 }
