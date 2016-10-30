@@ -10,7 +10,7 @@ describe("populationToString", function () {
             ".....\n" +
             ".....\n" +
             ".....\n" +
-            ".....\n"
+            "....."
         )
     });
     it("should return field with stars in position with alive cells", function () {
@@ -19,7 +19,7 @@ describe("populationToString", function () {
             ".....\n" +
             ".....\n" +
             ".....\n" +
-            "...**\n"
+            "...**"
         )
     });
     it("should return field with stars only if all cells are alive", function () {
@@ -30,7 +30,7 @@ describe("populationToString", function () {
         ], d(0, 0, 3, 3))).toBe(
             "***\n" +
             "***\n" +
-            "***\n"
+            "***"
         )
     });
     it("should ignore alive cells which is out of field dimension ", function () {
@@ -39,7 +39,7 @@ describe("populationToString", function () {
         ], d(0, 0, 3, 3))).toBe(
             "*..\n" +
             ".*.\n" +
-            "..*\n"
+            "..*"
         )
     });
 });
