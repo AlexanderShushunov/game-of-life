@@ -3,7 +3,7 @@ const _ = require("lodash");
 require("jasmine-collection-matchers");
 
 const {step, _forTest : {isAlive, observableDeadField, neighbours}} = require("../src/game");
-const {c} = require("../src/helpers");
+const c = (x, y) => ({x, y});
 
 describe("Game", function () {
     it("step should birth new cell if 3 neighbours exists", function () {
