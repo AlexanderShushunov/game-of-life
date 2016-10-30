@@ -89,4 +89,16 @@ describe("Game", function () {
             c(4, 7), c(6, 7),
             c(4, 8), c(5, 8), c(6, 8)], true);
     });
+
+    it("isAlive should return true if cell in population", () => {
+        expect(isAlive([c(0, 0), c(-2, -9), c(100, 500)], c(-2, -9))).toBeTruthy();
+    });
+
+    it("isAlive should return true if population has only inputted cell", () => {
+        expect(isAlive([c(100, 500)], c(100, 500))).toBeTruthy();
+    });
+
+    it("isAlive should return false if population does not have inputted cell", () => {
+        expect(isAlive([c(0,0), c(1,1), c(1,0)], c(0, 1))).toBeFalsy();
+    });
 });
